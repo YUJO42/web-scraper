@@ -9,33 +9,62 @@ All this functions should check for errors, follow the comments to see all cases
 
 There should be NO ERRORS from Python in the console.
 """
+
+
 import os
-my_dict = {}
 
 
-def add_to_dict(x, y):
-    if type(x) is str:
-        print("You need to send a dictionary. You sent:", type(x))
-        my_dict[x] = x
-        my_dict[y] = y
-    elif (type(x) is dict):
-        print("You need a send a word and a definition.")
+def add_to_dict(*content):
+    if type(content[0]) != dict:
+        return print("You need to send a dictionary. You sent:", type(content[0]))
+    if (len(content) < 3):
+        return print("You need to send a word and a definition")
+    if content[1] not in content[0]:
+        content[0][content[1]] = content[2]
+        return print(content[1], "has been added.")
+    if content[1] in content[0]:
+        return print(content[1], "is already on the dictionary. Won`t add.")
+    print("ERROR: This function did not work. Please check your input value")
     pass
 
 
-def add_to_dict(x, y, z):
-    if
-
-
-def get_from_dict(x, y, z):
+def get_from_dict(*content):
+    if type(content[0]) != dict:
+        return print("You need to send a dictionary. You sent:", type(content[0]))
+    if (len(content) == 1):
+        return print("You need to send a word to search for.")
+    if (len(content) == 2):
+        if (content[1] not in content[0]):
+            return print(content[1], "was not found in this dict.")
+        elif (content[1] in content[0]):
+            return print(content[1], ":", content[0][content[1]])
+    print("ERROR: This function did not work. Please check your input value")
     pass
 
 
-def update_word():
+def update_word(*content):
+    if type(content[0]) != dict:
+        return print("You need to send a dictionary. You sent:", type(content[0]))
+    if (len(content) < 3):
+        return print("You need to send a word and a definition to update.")
+    if content[1] not in content[0]:
+        return print(content[1], "is not on the dict. Can`t update non-existing word.")
+    if content[1] in content[0]:
+        content[0][content[1]] = content[2]
+        return print(content[1], "has been updated to:", content[2], ".")
     pass
 
 
-def delete_from_dict():
+def delete_from_dict(*content):
+    if type(content[0]) != dict:
+        return print("You need to send a dictionary. You sent:", type(content[0]))
+    if (len(content) == 1):
+        return print("You need specify a word to delete.")
+    if (content[1] not in content[0]):
+        return print(content[1], "is not in this dict. Won`t delete.")
+    if (content[1]) in content[0]:
+        del content[0][content[1]]
+        return print(content[1], "has been deleted.")
     pass
 
 # \/\/\/\/\/\/\ DO NOT TOUCH  \/\/\/\/\/\/\
@@ -63,8 +92,6 @@ add_to_dict(my_english_dict, "kimchi", "The source of life.")
 # Should not work. kimchi is already on the dict
 print('\nadd_to_dict(my_english_dict, "kimchi", "My fav. food"):')
 add_to_dict(my_english_dict, "kimchi", "My fav. food")
-
-
 print("\n\n###### get_from_dict ######\n")
 
 # Should not work. First argument should be a dict.
@@ -105,6 +132,7 @@ update_word(my_english_dict, "kimchi", "Food from the gods.")
 print('\nget_from_dict(my_english_dict, "kimchi"):')
 get_from_dict(my_english_dict, "kimchi")
 
+####################################################################################
 
 print("\n\n###### delete_from_dict ######\n")
 
