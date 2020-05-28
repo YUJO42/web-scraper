@@ -12,60 +12,114 @@ There should be NO ERRORS from Python in the console.
 
 
 import os
+# @@@@@ solution @@@@@
 
 
-def add_to_dict(*content):
-    if type(content[0]) != dict:
-        return print("You need to send a dictionary. You sent:", type(content[0]))
-    if (len(content) < 3):
-        return print("You need to send a word and a definition")
-    if content[1] not in content[0]:
-        content[0][content[1]] = content[2]
-        return print(content[1], "has been added.")
-    if content[1] in content[0]:
-        return print(content[1], "is already on the dictionary. Won`t add.")
-    print("ERROR: This function did not work. Please check your input value")
-    pass
+def add_to_dict(a_dict, word="", definition=""):
+    if type(a_dict) is not dict:
+        print("You need to send a dictionary. You sent:", type(a_dict))
+    elif word == '' or definition == '':
+        print("You need to send a word and a definition.")
+    else:
+        if word in a_dict:
+            print(f"{word} is already on the dictionary. Won't add.")
+        else:
+            a_dict[word] = definition
+            print(word, "has been added.")
 
 
-def get_from_dict(*content):
-    if type(content[0]) != dict:
-        return print("You need to send a dictionary. You sent:", type(content[0]))
-    if (len(content) == 1):
-        return print("You need to send a word to search for.")
-    if (len(content) == 2):
-        if (content[1] not in content[0]):
-            return print(content[1], "was not found in this dict.")
-        elif (content[1] in content[0]):
-            return print(content[1], ":", content[0][content[1]])
-    print("ERROR: This function did not work. Please check your input value")
-    pass
+def get_from_dict(a_dict, word=""):
+    if type(a_dict) is not dict:
+        print("You need to send a dictionary. You sent:", type(a_dict))
+    elif word == '':
+        print("You need to send a word to search for.")
+    else:
+        if word not in a_dict:
+            print(f"{word} was not found in this dict.")
+        else:
+            print(f"{word}: {a_dict[word]}")
 
 
-def update_word(*content):
-    if type(content[0]) != dict:
-        return print("You need to send a dictionary. You sent:", type(content[0]))
-    if (len(content) < 3):
-        return print("You need to send a word and a definition to update.")
-    if content[1] not in content[0]:
-        return print(content[1], "is not on the dict. Can`t update non-existing word.")
-    if content[1] in content[0]:
-        content[0][content[1]] = content[2]
-        return print(content[1], "has been updated to:", content[2], ".")
-    pass
+def update_word(a_dict, word="", definition=""):
+    if type(a_dict) is not dict:
+        print("You need to send a dictionary. You sent:", type(a_dict))
+    elif word == "" or definition == "":
+        print("You need to send a word and a definition to update.")
+    else:
+        if word not in a_dict:
+            print(f"{word} is not on the dict. Can't update non-existing word.")
+        else:
+            a_dict[word] = definition
+            print(word, "has been updated to:", definition)
 
 
-def delete_from_dict(*content):
-    if type(content[0]) != dict:
-        return print("You need to send a dictionary. You sent:", type(content[0]))
-    if (len(content) == 1):
-        return print("You need specify a word to delete.")
-    if (content[1] not in content[0]):
-        return print(content[1], "is not in this dict. Won`t delete.")
-    if (content[1]) in content[0]:
-        del content[0][content[1]]
-        return print(content[1], "has been deleted.")
-    pass
+def delete_from_dict(a_dict, word=""):
+    if type(a_dict) is not dict:
+        print("You need to send a dictionary. You sent:", type(a_dict))
+    elif word == "":
+        print("You need to specify a word to delete.")
+    else:
+        if word not in a_dict:
+            print(f"{word} is not in this dict. Won't delete.")
+        else:
+            del a_dict[word]
+            print(f"{word} has been deleted.")
+
+
+# @@@@@@@@@@@ my code @@@@@@@@@@@@@@@@@@@@@
+#
+# def add_to_dict(*content):
+#     if type(content[0]) != dict:
+#         return print("You need to send a dictionary. You sent:", type(content[0]))
+#     if (len(content) < 3):
+#         return print("You need to send a word and a definition")
+#     if content[1] not in content[0]:
+#         content[0][content[1]] = content[2]
+#         return print(content[1], "has been added.")
+#     if content[1] in content[0]:
+#         return print(content[1], "is already on the dictionary. Won`t add.")
+#     print("ERROR: This function did not work. Please check your input value")
+#     pass
+
+
+# def get_from_dict(*content):
+#     if type(content[0]) != dict:
+#         return print("You need to send a dictionary. You sent:", type(content[0]))
+#     if (len(content) == 1):
+#         return print("You need to send a word to search for.")
+#     if (len(content) == 2):
+#         if (content[1] not in content[0]):
+#             return print(content[1], "was not found in this dict.")
+#         elif (content[1] in content[0]):
+#             return print(content[1], ":", content[0][content[1]])
+#     print("ERROR: This function did not work. Please check your input value")
+#     pass
+
+
+# def update_word(*content):
+#     if type(content[0]) != dict:
+#         return print("You need to send a dictionary. You sent:", type(content[0]))
+#     if (len(content) < 3):
+#         return print("You need to send a word and a definition to update.")
+#     if content[1] not in content[0]:
+#         return print(content[1], "is not on the dict. Can`t update non-existing word.")
+#     if content[1] in content[0]:
+#         content[0][content[1]] = content[2]
+#         return print(content[1], "has been updated to:", content[2], ".")
+#     pass
+
+
+# def delete_from_dict(*content):
+#     if type(content[0]) != dict:
+#         return print("You need to send a dictionary. You sent:", type(content[0]))
+#     if (len(content) == 1):
+#         return print("You need specify a word to delete.")
+#     if (content[1] not in content[0]):
+#         return print(content[1], "is not in this dict. Won`t delete.")
+#     if (content[1]) in content[0]:
+#         del content[0][content[1]]
+#         return print(content[1], "has been deleted.")
+#     pass
 
 # \/\/\/\/\/\/\ DO NOT TOUCH  \/\/\/\/\/\/\
 
